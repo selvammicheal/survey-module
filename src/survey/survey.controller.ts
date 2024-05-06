@@ -10,12 +10,18 @@ export class SurveyController {
   ) {}
   
   @MessagePattern({ cmd: 'create_survey' })
-  async createSurvey(@Payload() message): Promise<any> {
-    return await this.surveyService.createSurvey(message.data);
+  async createSurvey(@Payload() data): Promise<any> {
+    return await this.surveyService.createSurvey(data.data);
   }
 
   @MessagePattern({ cmd: 'get_survey' })
   async getSurvey(): Promise<any[]> {
     return await this.surveyService.getSurvey()
+  }
+
+  @MessagePattern({ cmd: 'update_survey' })
+  async updateSurvey(@Payload() data): Promise<any> {
+    console.log(data.id, data.data)
+    return await this.surveyService.updateSurvey(data.id, data.data);
   }
 }

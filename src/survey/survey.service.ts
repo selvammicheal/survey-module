@@ -10,15 +10,17 @@ export class SurveyService {
         @InjectModel(Survey.name) private readonly surveyModel: Model<Survey>,
     ) { }
 
-    async createSurvey(survey: createSurveyDto) {
-        console.log(survey,"SSS")
+    async createSurvey(survey) {
         const surveyData: any =  new this.surveyModel(survey)
-        console.log(surveyData,"surveyData")
         return this.surveyModel.insertMany([surveyData])
     }
 
     async getSurvey(): Promise<Survey[]> {
         return this.surveyModel.find()
+    }
+
+    async updateSurvey(id: string, data) {
+        return this.surveyModel.findByIdAndUpdate(id, data)
     }
 
 }
