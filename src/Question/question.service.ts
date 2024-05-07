@@ -10,12 +10,13 @@ export class QuestionService {
     ) { }
 
     async createQuestion(question) {
-        const questionData: any =  new this.questionModel(question)
-        return this.questionModel.insertMany([questionData])
+        const questionData =  new this.questionModel(question)
+        console.log(question,"questionData",questionData)
+        return questionData.save();
     }
 
-    async getQuestion(): Promise<Question[]> {
-        return this.questionModel.find()
+    async getQuestionsBySection(id: string) {
+        return this.questionModel.find({section_id: id});
     }
 
     // async updateSurvey(id: string, data) {

@@ -1,30 +1,26 @@
-import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
-import mongoose from "mongoose";
-import { Survey } from "src/survey/schemas/survey.schema";
+import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose"
 
-Schema({ timestamps: true })
+@Schema({timestamps: true})
 
 export class Question {
-    @Prop({ default: "Untitled Question" })
-    question: string;
+   @Prop({default: "Untitled form"})
+   question: string;
 
-    @Prop()
-    questionImg: string
+   @Prop()
+   question_type_id: string;
 
-    @Prop()
-    question_type_id: string;
+   @Prop()
+   option: string;
 
-    @Prop()
-    option: string;
+   @Prop()
+   section_id: string;
 
-    @Prop()
-    section_id: string;
+   @Prop()
+   survey_id: string;
 
-    @Prop({ type: mongoose.Schema.ObjectId, ref: "Survey", required: true })
-    survey_id: Survey;
-
-    @Prop()
-    mandatory: boolean;
+   @Prop()
+   mandatory: string;
+   
 }
 
-export const QuestionSchema = SchemaFactory.createForClass(Question);
+export const QuestionSchema = SchemaFactory.createForClass(Question);  

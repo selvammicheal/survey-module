@@ -10,11 +10,12 @@ export class QuestionController {
 
     @MessagePattern({ cmd: 'create_question' })
     async createQuestion(@Payload() data): Promise<any> {
-        return await this.questionService.createQuestion(data.data);
+        console.log("Insoide", data)
+        return  await this.questionService.createQuestion(data);
     }
 
-    @MessagePattern({ cmd: 'get_question' })
-    async getQuestion(): Promise<any[]> {
-        return await this.questionService.getQuestion()
+    @MessagePattern({ cmd: "get_questions_by_section" })
+    async getQuestionsBySection(@Payload() id): Promise<any> {
+        return await this.questionService.getQuestionsBySection(id);
     }
 }
