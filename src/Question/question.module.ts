@@ -7,7 +7,7 @@ import { QuestionController } from './question.controller';
 import { QuestionService } from './question.service';
 
 @Module({
-    imports:[
+    imports:[ 
         MongooseModule.forFeature([
             {
                 name:Question.name,

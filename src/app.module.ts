@@ -6,12 +6,14 @@ import { SurveyController } from './survey/survey.controller';
 import { QuestionController } from './Question/question.controller';
 import { SurveyService } from './survey/survey.service';
 import { QuestionService } from './Question/question.service';
+import { QuestionTypeModule } from './QuestionType/questionType.module';
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb+srv://bmanikandan:MnVQfCcyKC0k3Zdt@cluster0.8icnudk.mongodb.net'),
+    MongooseModule.forRoot('mongodb+srv://selvam:YseGf1XzOPRmbxrc@users.yh49p1d.mongodb.net/?retryWrites=true&w=majority&appName=Users'),
     SurveyModule,
-    QuestionModule
+    QuestionModule,
+    QuestionTypeModule
   ],
   controllers: [],
   providers: [],

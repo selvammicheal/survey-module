@@ -10,7 +10,7 @@ export class QuestionService {
     ) { }
 
     async createQuestion(question) {
-        const questionData =  new this.questionModel(question)
+        const questionData =  new this.questionModel(question) 
         console.log(question,"questionData",questionData)
         return questionData.save();
     }

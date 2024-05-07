@@ -12,6 +12,6 @@ export class Survey {
    @Prop()
    ownerId: string;
    
-}
+}  
 
 export const SurveySchema = SchemaFactory.createForClass(Survey);  
