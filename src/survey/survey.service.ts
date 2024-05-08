@@ -1,9 +1,7 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Survey } from './schemas/survey.schema';
 import { Model } from 'mongoose';
-import { createSurveyDto } from './dto/createSurveyDto.dto';
-import { Question } from 'src/Question/schemas/question.schema';
 
 @Injectable()
 export class SurveyService {
