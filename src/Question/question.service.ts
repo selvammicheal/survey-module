@@ -10,8 +10,7 @@ export class QuestionService {
     ) { }
 
     async createQuestion(question) {
-        const questionData =  new this.questionModel(question) 
-        console.log(question,"questionData",questionData)
+        const questionData =  new this.questionModel(question);
         return questionData.save();
     }
 
@@ -19,7 +18,7 @@ export class QuestionService {
         return this.questionModel.find({section_id: id});
     }
 
-    // async updateSurvey(id: string, data) {
-    //     return this.questionModel.findByIdAndUpdate(id, data)
-    // }
+    async updateQuestion(id: string, data) {
+        return this.questionModel.findByIdAndUpdate(id, data, {new: true})
+    }
 }

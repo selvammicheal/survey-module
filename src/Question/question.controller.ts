@@ -13,9 +13,14 @@ export class QuestionController {
         console.log("Insoide", data)
         return  await this.questionService.createQuestion(data);
     }
- 
+
     @MessagePattern({ cmd: "get_questions_by_section" })  
     async getQuestionsBySection(@Payload() id): Promise<any> {
         return await this.questionService.getQuestionsBySection(id);
+    }
+
+    @MessagePattern({ cmd: "update_question" })  
+    async updateQuestion(@Payload() data): Promise<any> {
+        return await this.questionService.updateQuestion(data.id, data.data); 
     }
 }

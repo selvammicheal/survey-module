@@ -7,13 +7,15 @@ import { QuestionController } from './Question/question.controller';
 import { SurveyService } from './survey/survey.service';
 import { QuestionService } from './Question/question.service';
 import { QuestionTypeModule } from './QuestionType/questionType.module';
+import { SectionModule } from './Sections/section.module';
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb+srv://selvam:YseGf1XzOPRmbxrc@users.yh49p1d.mongodb.net/?retryWrites=true&w=majority&appName=Users'),
+    MongooseModule.forRoot('mongodb+srv://bmanikandan:MnVQfCcyKC0k3Zdt@cluster0.8icnudk.mongodb.net'),
     SurveyModule,
     QuestionModule,
-    QuestionTypeModule
+    QuestionTypeModule,
+    SectionModule
   ],
   controllers: [],
   providers: [],

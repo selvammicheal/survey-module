@@ -11,7 +11,10 @@ import { QuestionType } from "./schemas/questionType.schema";
 
     async createQuestionType(questionType){
         const questionTypeData = new this.questionTypeModel(questionType);
-        console.log(questionTypeData)
         return questionTypeData.save();
+    }
+
+    async getAllQuestionType() {
+        return await this.questionTypeModel.find();
     }
  }

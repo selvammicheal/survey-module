@@ -1,4 +1,5 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose"
+import mongoose from "mongoose";
 
 @Schema({timestamps: true})
 
@@ -13,6 +14,7 @@ export class Question {
    option: string;
 
    @Prop()
+   @Prop({ type: mongoose.Schema.ObjectId, ref: 'Section', required: true })
    section_id: string;
 
    @Prop()

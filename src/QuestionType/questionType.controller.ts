@@ -13,5 +13,10 @@ export class QuestionTypeController {
     async createQuestionType(@Payload() data): Promise<any> {
         return await this.questionTypeService.createQuestionType(data);
     }
+
+    @MessagePattern({cmd: "get_all_question_type"})
+    async getAllQuestionType(): Promise<any> {
+        return await this.questionTypeService.getAllQuestionType();
+    }
     
 }
