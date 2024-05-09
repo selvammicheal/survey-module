@@ -15,8 +15,8 @@ export class SectionController {
     }
 
     @MessagePattern({ cmd: 'get_all_sections' })
-    async getAllSections(): Promise<Section[]> {
-        return await this.sectionService.getAllSections();
+    async getAllSections(@Payload() id): Promise<Section[]> {
+        return await this.sectionService.getAllSections(id);
     }
 
     // @MessagePattern({ cmd: 'get_survey' })

@@ -14,9 +14,9 @@ export class QuestionController {
         return  await this.questionService.createQuestion(data);
     }
 
-    @MessagePattern({ cmd: "get_questions_by_section" })  
+    @MessagePattern({ cmd: "get_questions_by_survey" })  
     async getQuestionsBySection(@Payload() id): Promise<any> {
-        return await this.questionService.getQuestionsBySection(id);
+        return await this.questionService.getQuestionsBySurvey(id);
     }
 
     @MessagePattern({ cmd: "update_question" })  

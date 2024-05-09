@@ -14,8 +14,8 @@ export class SectionService {
         return this.sectionModel.insertMany([sectionData]);
     }
 
-    async getAllSections() {
-        return this.sectionModel.find();
+    async getAllSections(id) {
+        return this.sectionModel.find({survey_id:id});
     }
 
     // async getSurvey(id) {

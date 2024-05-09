@@ -1,9 +1,10 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose"
+import mongoose from "mongoose";
 
 @Schema({timestamps: true})
 
 export class Section {
-   @Prop()
+   @Prop({ type: mongoose.Schema.ObjectId, ref: 'Survey', required: true })
    survey_id: string;
 
    @Prop()

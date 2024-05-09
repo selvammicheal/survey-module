@@ -7,18 +7,17 @@ export class Question {
    @Prop({default: "Untitled form"})
    question: string;
 
-   @Prop()
-   question_type_id: string;
+   @Prop({ type: mongoose.Schema.ObjectId, ref: 'QuestionType', required: true })
+   question_type_id: mongoose.Schema.Types.ObjectId;
 
    @Prop()
-   option: string;
+   option: mongoose.Schema.Types.Mixed;
 
-   @Prop()
    @Prop({ type: mongoose.Schema.ObjectId, ref: 'Section', required: true })
-   section_id: string;
+   section_id: mongoose.Schema.Types.ObjectId;
 
-   @Prop()
-   survey_id: string;
+   @Prop({ type: mongoose.Schema.ObjectId, ref: 'Survey', required: true })
+   survey_id: mongoose.Schema.Types.ObjectId;
 
    @Prop()
    mandatory: string;
