@@ -21,7 +21,7 @@ export class SurveyController {
     }
 
     @MessagePattern({ cmd: 'get_survey' })
-    async getSurvey(@Payload() id): Promise<Survey> {
+    async getSurvey(@Payload() id): Promise<any> {
         return await this.surveyService.getSurvey(id);
     }
 
