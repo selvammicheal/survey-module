@@ -12,6 +12,7 @@ async function bootstrap() {
     },
   });
   await app.startAllMicroservices();
+  app.useGlobalPipes(new ValidationPipe());
   await app.listen(3001)
 }
 bootstrap();

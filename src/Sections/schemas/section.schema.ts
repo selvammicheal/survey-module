@@ -10,7 +10,7 @@ export class Section {
    @Prop()
    name: string;
 
-   @Prop({default: "Survey description"})
+   @Prop()
    description: string;
    
 }  

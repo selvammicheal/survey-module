@@ -3,10 +3,10 @@ import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose"
 @Schema({timestamps: true})
 
 export class Survey {
-   @Prop({default: "Untitled form"})
+   @Prop()
    name: string;
 
-   @Prop({default: "Form description"})
+   @Prop()
    description: string;
 
    @Prop()

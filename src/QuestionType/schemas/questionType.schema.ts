@@ -4,7 +4,7 @@ import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose"
 
 export class QuestionType {
 
-   @Prop({default: "1"})
+   @Prop()
    type: string;
 
    @Prop()

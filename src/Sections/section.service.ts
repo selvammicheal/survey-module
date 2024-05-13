@@ -10,8 +10,8 @@ export class SectionService {
     ) { }
 
     async createSection(section) {
-        const sectionData: Section =  new this.sectionModel(section);
-        return this.sectionModel.insertMany([sectionData]);
+        const sectionData =  new this.sectionModel(section);
+        return sectionData.save();
     }
 
     async getAllSections(id) {

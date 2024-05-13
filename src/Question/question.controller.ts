@@ -15,7 +15,7 @@ export class QuestionController {
     }
 
     @MessagePattern({ cmd: "get_questions_by_survey" })  
-    async getQuestionsBySection(@Payload() id): Promise<any> {
+    async getQuestionsBySurvey(@Payload() id): Promise<any> {
         return await this.questionService.getQuestionsBySurvey(id);
     }
 

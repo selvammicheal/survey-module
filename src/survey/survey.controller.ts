@@ -1,8 +1,9 @@
-import { Controller, Body, Patch, Param, ValidationPipe } from '@nestjs/common';
+import { Controller, Body, Patch, Param, ValidationPipe, Res } from '@nestjs/common';
 import { MessagePattern, Payload } from '@nestjs/microservices';
 import { SurveyService } from './survey.service';
 import { createSurveyDto } from './dto/createSurveyDto.dto';
 import { Survey } from './schemas/survey.schema';
+import { ObjectId } from 'mongodb';
 
 @Controller()
 export class SurveyController {
@@ -21,8 +22,19 @@ export class SurveyController {
     }
 
     @MessagePattern({ cmd: 'get_survey' })
-    async getSurvey(@Payload() id): Promise<Survey> {
-        return await this.surveyService.getSurvey(id);
+    async getSurvey(@Payload() id: ObjectId): Promise<any> {
+        try{
+            console.log(id,"id")
+            return await this.surveyService.getSurvey(id);
+        } catch (error){
+            console.log(error,"error")
+            if(error.kind === "ObjectId"){
+               
+                return {error: 'Error in the Object Id'}
+            }
+            return error.response;
+        }
+        
     }
 
     @MessagePattern({ cmd: 'update_survey' })
