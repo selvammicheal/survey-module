@@ -8,12 +8,15 @@ export const QUESTION_DATA = {
     "video" : {
         options: ""
     },
+    //short
     "663f0b3baa8c637f5b0d37d0": {
         options: null
     },
+    //paragraph
     "663f0b4eaa8c637f5b0d37d2": {
         options: null
     },
+    // multiple-choice
     "663f0b5caa8c637f5b0d37d4": {
         options: [
             {
@@ -22,6 +25,7 @@ export const QUESTION_DATA = {
             }
         ],
     },
+    // Checkbox
     "663f0b6daa8c637f5b0d37d6": {
         options: [
             {
@@ -30,6 +34,7 @@ export const QUESTION_DATA = {
             }
         ]
     },
+    // Dropdown
     "663f0b77aa8c637f5b0d37d8": {
         options: [
             {
@@ -38,6 +43,7 @@ export const QUESTION_DATA = {
             }
         ]
     },
+    // Linear scale
     "663f0b89aa8c637f5b0d37da": {
         options: {
             startIndex: 1,
@@ -46,6 +52,7 @@ export const QUESTION_DATA = {
             endLabel: ""
         },
     },
+    // Multiple choice grid
     "663f0b98aa8c637f5b0d37dc": {
         options: {
             rowData: [
@@ -61,6 +68,7 @@ export const QUESTION_DATA = {
             ],
         }
     },
+    // Checkbox grid
     "663f0ba4aa8c637f5b0d37de": {
         options: {
             rowData: [
@@ -76,9 +84,11 @@ export const QUESTION_DATA = {
             ],
         }
     },
+    // Date
     "663f0bb1aa8c637f5b0d37e0": {
         options: null
     },
+    // Time
     "663f0bb9aa8c637f5b0d37e2": {
         options: null
     }

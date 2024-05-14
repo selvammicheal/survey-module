@@ -14,6 +14,7 @@ export class QuestionService {
     ) { }
 
     async createQuestion(question) {
+        question["question_data"] = QUESTION_DATA[question.question_type_id]
         const questionData = new this.questionModel(question);
         return questionData.save();
     }
