@@ -1,6 +1,7 @@
 import { Controller } from '@nestjs/common';
 import { QuestionService } from './question.service';
 import { MessagePattern, Payload } from '@nestjs/microservices';
+import { ObjectId } from 'mongodb';
 
 @Controller('question')
 export class QuestionController {
@@ -10,17 +11,37 @@ export class QuestionController {
 
     @MessagePattern({ cmd: 'create_question' })
     async createQuestion(@Payload() data): Promise<any> {
-        console.log("Insoide", data)
-        return  await this.questionService.createQuestion(data);
+        try {
+            return await this.questionService.createQuestion(data);
+        } catch (err) {
+            return err;
+        }
     }
 
-    @MessagePattern({ cmd: "get_questions_by_survey" })  
-    async getQuestionsBySurvey(@Payload() id): Promise<any> {
-        return await this.questionService.getQuestionsBySurvey(id);
+    @MessagePattern({ cmd: "get_questions_by_survey" })
+    async getQuestionsBySurvey(@Payload() id: ObjectId): Promise<any> {
+        try {
+            return await this.questionService.getQuestionsBySurvey(id);
+        } catch (err) {
+            return err;
+        }
     }
 
-    @MessagePattern({ cmd: "update_question" })  
-    async updateQuestion(@Payload() data): Promise<any> {
-        return await this.questionService.updateQuestion(data.id, data.data); 
+    @MessagePattern({ cmd: "update_question" })
+    async updateQuestion(@Payload() {id, data}): Promise<any> {
+        try {
+            return await this.questionService.updateQuestion(id, data);
+        } catch (err) {
+            return err;
+        }
+    }
+
+    @MessagePattern({ cmd: "update_question_type" })
+    async updateQuestionType(@Payload() {id, value}): Promise<any> {
+        try {
+            return await this.questionService.updateQuestionType(id, value);
+        } catch (err) {
+            return err;
+        }
     }
 }

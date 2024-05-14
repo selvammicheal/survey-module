@@ -11,7 +11,10 @@ export class Question {
    question_type_id: mongoose.Schema.Types.ObjectId;
 
    @Prop()
-   option: mongoose.Schema.Types.Mixed;
+   question_img_src: string
+
+   @Prop()
+   question_data: mongoose.Schema.Types.Mixed;
 
    @Prop({ type: mongoose.Schema.ObjectId, ref: 'Section', required: true })
    section_id: mongoose.Schema.Types.ObjectId;

@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
-import { SurveyModule } from './survey/survey.module';
+import { SurveyModule } from './Survey/survey.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { QuestionModule } from './question/question.module';
-import { SurveyController } from './survey/survey.controller';
+import { SurveyController } from './Survey/survey.controller';
 import { QuestionController } from './Question/question.controller';
-import { SurveyService } from './survey/survey.service';
+import { SurveyService } from './Survey/survey.service';
 import { QuestionService } from './Question/question.service';
 import { QuestionTypeModule } from './QuestionType/questionType.module';
 import { SectionModule } from './Sections/section.module';

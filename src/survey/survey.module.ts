@@ -32,6 +32,11 @@ import { QuestionType, QuestionTypeSchema } from 'src/QuestionType/schemas/quest
         ])
     ],
     controllers:[SurveyController],
-    providers:[SurveyService, SectionService, QuestionService, QuestionTypeService]
+    providers:[SurveyService, SectionService, QuestionService, QuestionTypeService, 
+    //     {
+    //     provide: APP_FILTER,
+    //     useClass: CustomExceptionFilter,
+    //   }
+    ]
 })
 export class SurveyModule {} 

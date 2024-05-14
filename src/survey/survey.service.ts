@@ -35,6 +35,7 @@ export class SurveyService {
         const question = {
             question: null,
             question_type_id: questionType[0]._id,
+            question_img_src: "",
             option: null,
             section_id: sectionResponse._id,
             survey_id: surveyResponse._id,
@@ -50,12 +51,15 @@ export class SurveyService {
     }
 
     async getSurvey(id: ObjectId) {
-        console.log(id,"idid")
+        if(!ObjectId.isValid(id)){
+            throw new Error("Object Id is invalid")
+        }
+
         const surveyData = await this.surveyModel.findById(id);
-        console.log(surveyData,"surveyDatas")
         if (!surveyData) {
             throw new NotFoundException('Survey not found!');
         }
+
         const aggregationPipeline = [
             {
                 $match: { _id: new ObjectId(id) },
@@ -99,7 +103,16 @@ export class SurveyService {
         // return this.surveyModel.findById(id);
     }
 
-    async updateSurvey(id: string, data) {
+    async updateSurvey(id: ObjectId, data) {
+        if (!ObjectId.isValid(id)) {
+            throw new Error("Object Id is invalid")
+        }
+        
+        const surveyData = await this.surveyModel.findById(id);
+        if (!surveyData) {
+            throw new NotFoundException('Survey not found!');
+        }
+
         return this.surveyModel.findByIdAndUpdate(id, data, { new: true });
     }
 }

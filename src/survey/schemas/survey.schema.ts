@@ -8,10 +8,6 @@ export class Survey {
 
    @Prop()
    description: string;
-
-   @Prop()
-   ownerId: string;
-   
-}  
+}
 
 export const SurveySchema = SchemaFactory.createForClass(Survey);  

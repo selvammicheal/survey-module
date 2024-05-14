@@ -1,7 +1,6 @@
 import { Controller, Body, Patch, Param, ValidationPipe, Res } from '@nestjs/common';
 import { MessagePattern, Payload } from '@nestjs/microservices';
 import { SurveyService } from './survey.service';
-import { createSurveyDto } from './dto/createSurveyDto.dto';
 import { Survey } from './schemas/survey.schema';
 import { ObjectId } from 'mongodb';
 
@@ -13,32 +12,37 @@ export class SurveyController {
 
     @MessagePattern({ cmd: 'create_survey' })
     async createSurvey(@Payload() data): Promise<any> {
-        return await this.surveyService.createSurvey(data);
+        try {
+            return await this.surveyService.createSurvey(data);
+        } catch (err) {
+            return err;
+        }
     }
 
     @MessagePattern({ cmd: 'get_all_survey' })
-    async getAllSurvey(): Promise<Survey[]> {
-        return await this.surveyService.getAllSurvey();
+    async getAllSurvey(): Promise<any> {
+        try {
+            return await this.surveyService.getAllSurvey();
+        } catch (err) {
+            return err;
+        }
     }
 
     @MessagePattern({ cmd: 'get_survey' })
     async getSurvey(@Payload() id: ObjectId): Promise<any> {
-        try{
-            console.log(id,"id")
+        try {
             return await this.surveyService.getSurvey(id);
-        } catch (error){
-            console.log(error,"error")
-            if(error.kind === "ObjectId"){
-               
-                return {error: 'Error in the Object Id'}
-            }
-            return error.response;
+        } catch (err) {
+            return err;
         }
-        
     }
 
     @MessagePattern({ cmd: 'update_survey' })
-    async updateSurvey(@Payload() data): Promise<Survey> {
-        return await this.surveyService.updateSurvey(data.id, data.data);
+    async updateSurvey(@Payload() {id, data}): Promise<Survey> {
+        try {
+            return await this.surveyService.updateSurvey(id, data);
+        } catch (err) {
+            return err;
+        }
     }
 }

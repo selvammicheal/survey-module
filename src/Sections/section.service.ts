@@ -1,7 +1,8 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, HttpException, HttpStatus, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Section } from './schemas/section.schema';
 import { Model } from 'mongoose';
+import { ObjectId } from 'mongodb';
 
 @Injectable()
 export class SectionService {
@@ -14,15 +15,17 @@ export class SectionService {
         return sectionData.save();
     }
 
-    async getAllSections(id) {
-        return this.sectionModel.find({survey_id:id});
+    async getAllSectionsBySurvey(id: ObjectId) {
+        if(!ObjectId.isValid(id)){
+            throw new HttpException("Object Id is invalid", HttpStatus.BAD_REQUEST)
+        }
+
+        const sectionsData = await this.sectionModel.find({survey_id:id});
+        if (sectionsData.length === 0) {
+            throw new NotFoundException('Sections Not Found');
+            // throw new NotFoundException('Sections not found!');
+        }
+
+        return sectionsData;
     }
-
-    // async getSurvey(id) {
-    //     return this.surveyModel.findById(id);
-    // }
-
-    // async updateSurvey(id: string, data) {
-    //     return this.surveyModel.findByIdAndUpdate(id, data, {new: true});
-    // }
 }

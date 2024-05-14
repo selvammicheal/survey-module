@@ -1,7 +1,8 @@
-import { Controller, Body, Patch, Param, ValidationPipe } from '@nestjs/common';
+import { Controller, Body, Patch, Param, ValidationPipe, UseFilters } from '@nestjs/common';
 import { MessagePattern, Payload } from '@nestjs/microservices';
 import { SectionService } from './section.service';
 import { Section } from './schemas/section.schema';
+import { ObjectId } from 'mongodb';
 
 @Controller()
 export class SectionController {
@@ -11,21 +12,15 @@ export class SectionController {
 
     @MessagePattern({ cmd: 'create_section' })
     async createSection(@Payload() data): Promise<any> {
-        return await this.sectionService.createSection(data);
+        try {
+            return await this.sectionService.createSection(data);
+        } catch (err) {
+            return err;
+        }
     }
 
     @MessagePattern({ cmd: 'get_all_sections' })
-    async getAllSections(@Payload() id): Promise<Section[]> {
-        return await this.sectionService.getAllSections(id);
+    async getAllSectionsBySurvey(@Payload() id: ObjectId): Promise<any> {
+        return await this.sectionService.getAllSectionsBySurvey(id);
     }
-
-    // @MessagePattern({ cmd: 'get_survey' })
-    // async getSurvey(@Payload() id): Promise<Survey> {
-    //     return await this.surveyService.getSurvey(id);
-    // }
-
-    // @MessagePattern({ cmd: 'update_survey' })
-    // async updateSurvey(@Payload() data): Promise<Survey> {
-    //     return await this.surveyService.updateSurvey(data.id, data.data);
-    // }
 }
