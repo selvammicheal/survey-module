@@ -10,11 +10,10 @@ import { QUESTION_DATA } from './questionEnum';
 export class QuestionService {
     constructor(
         @InjectModel(Question.name) private readonly questionModel: Model<Question>,
-        private readonly questionTypeService: QuestionTypeService,
     ) { }
 
     async createQuestion(question) {
-        question["question_data"] = QUESTION_DATA[question.question_type_id]
+        question["question_data"] = QUESTION_DATA[question.question_type_id].questionData
         const questionData = new this.questionModel(question);
         return questionData.save();
     }
@@ -39,9 +38,6 @@ export class QuestionService {
         if(!ObjectId.isValid(id)){
             throw new Error("Object Id is invalid")
         }
-        console.log(QUESTION_DATA[questionTypeId],"QUESTION_DATA[questionTypeId]")
-        // const questionTypeData = await this.questionTypeService.getQuestionType(questionTypeId);
-        // console.log(questionTypeData,"questionTypeData")
         return this.questionModel.findByIdAndUpdate(id, {question_type_id: questionTypeId, question_data: QUESTION_DATA[questionTypeId].options}, { new: true })
     }
 }

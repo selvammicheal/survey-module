@@ -1,24 +1,24 @@
 export const QUESTION_DATA = {
     "title" : {
-        options: ""
+        questionData: ""
     },
     "image" : {
-        options: ""
+        questionData: ""
     },
     "video" : {
-        options: ""
+        questionData: ""
     },
     //short
     "663f0b3baa8c637f5b0d37d0": {
-        options: null
+        questionData: null
     },
     //paragraph
     "663f0b4eaa8c637f5b0d37d2": {
-        options: null
+        questionData: null
     },
     // multiple-choice
     "663f0b5caa8c637f5b0d37d4": {
-        options: [
+        questionData: [
             {
                 name: "Option 1",
                 imgSrc: ""
@@ -27,7 +27,7 @@ export const QUESTION_DATA = {
     },
     // Checkbox
     "663f0b6daa8c637f5b0d37d6": {
-        options: [
+        questionData: [
             {
                 name: "Option 1",
                 imgSrc: ""
@@ -36,7 +36,7 @@ export const QUESTION_DATA = {
     },
     // Dropdown
     "663f0b77aa8c637f5b0d37d8": {
-        options: [
+        questionData: [
             {
                 name: "Option 1",
                 imgSrc: ""
@@ -45,7 +45,7 @@ export const QUESTION_DATA = {
     },
     // Linear scale
     "663f0b89aa8c637f5b0d37da": {
-        options: {
+        questionData: {
             startIndex: 1,
             endIndex: 5,
             startLabel: "",
@@ -54,7 +54,7 @@ export const QUESTION_DATA = {
     },
     // Multiple choice grid
     "663f0b98aa8c637f5b0d37dc": {
-        options: {
+        questionData: {
             rowData: [
                 {
                     name: "Row 1"
@@ -70,7 +70,7 @@ export const QUESTION_DATA = {
     },
     // Checkbox grid
     "663f0ba4aa8c637f5b0d37de": {
-        options: {
+        questionData: {
             rowData: [
                 {
                     name: "Row 1"
@@ -86,10 +86,10 @@ export const QUESTION_DATA = {
     },
     // Date
     "663f0bb1aa8c637f5b0d37e0": {
-        options: null
+        questionData: null
     },
     // Time
     "663f0bb9aa8c637f5b0d37e2": {
-        options: null
+        questionData: null
     }
 }

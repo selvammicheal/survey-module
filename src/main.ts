@@ -15,6 +15,7 @@ async function bootstrap() {
   await app.startAllMicroservices();
   app.useGlobalFilters(new CustomExceptionFilter());
   app.useGlobalPipes(new ValidationPipe());
+  app.enableCors();
   await app.listen(3001)
 }
 bootstrap();
