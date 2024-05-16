@@ -44,4 +44,13 @@ export class QuestionController {
             return err;
         }
     }
+
+    @MessagePattern({ cmd: "delete_question" })
+    async deleteQuestion(@Payload() id): Promise<any> {
+        try {
+            return await this.questionService.deleteQuestion(id);
+        } catch (err) {
+            return err;
+        }
+    }
 }

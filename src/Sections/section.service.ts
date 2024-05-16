@@ -3,11 +3,14 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Section } from './schemas/section.schema';
 import { Model } from 'mongoose';
 import { ObjectId } from 'mongodb';
+import { QuestionTypeService } from 'src/QuestionType/questionType.service';
+import { Question } from 'src/question/schemas/question.schema';
 
 @Injectable()
 export class SectionService {
     constructor(
         @InjectModel(Section.name) private readonly sectionModel: Model<Section>,
+        @InjectModel(Question.name) private readonly questionModel: Model<Question>,
     ) { }
 
     async createSection(section) {
@@ -28,4 +31,21 @@ export class SectionService {
 
         return sectionsData;
     }
+    
+    async updateSection(id: ObjectId, data) {
+        if(!ObjectId.isValid(id)){
+            throw new Error("Object Id is invalid")
+        }
+        console.log(data)
+        return this.sectionModel.findByIdAndUpdate(id, data, { new: true })
+    }
+
+    async deleteSection(id: string): Promise<{ message: string }> {
+        await this.questionModel.deleteMany({section_id: id});
+        const result = await this.sectionModel.findByIdAndDelete(id);
+        if (!result) {
+          throw new NotFoundException(`Section with ID ${id} not found`);
+        }
+        return { message: 'Section deleted successfully' };
+      }
 }

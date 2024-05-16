@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Question } from './schemas/question.schema';
@@ -38,6 +38,14 @@ export class QuestionService {
         if(!ObjectId.isValid(id)){
             throw new Error("Object Id is invalid")
         }
-        return this.questionModel.findByIdAndUpdate(id, {question_type_id: questionTypeId, question_data: QUESTION_DATA[questionTypeId].options}, { new: true })
+        return this.questionModel.findByIdAndUpdate(id, {question_type_id: questionTypeId, question_data: QUESTION_DATA[questionTypeId].questionData}, { new: true })
     }
+
+    async deleteQuestion(id: string): Promise<{ message: string }> {
+        const result = await this.questionModel.findByIdAndDelete(id);
+        if (!result) {
+          throw new NotFoundException(`Question with ID ${id} not found`);
+        }
+        return { message: 'Question deleted successfully' };
+      }
 }

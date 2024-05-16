@@ -13,7 +13,11 @@ import { CustomExceptionFilter } from 'src/error-handling.filter';
             {
                 name: Section.name,
                 schema: SectionSchema
-            }
+            },
+            {
+                name:Question.name,
+                schema:QuestionSchema
+            },
         ])
     ],
     controllers: [SectionController],

@@ -23,7 +23,7 @@ export class Question {
    survey_id: mongoose.Schema.Types.ObjectId;
 
    @Prop()
-   mandatory: string;
+   mandatory: boolean; 
    
 }
 

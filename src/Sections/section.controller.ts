@@ -23,4 +23,22 @@ export class SectionController {
     async getAllSectionsBySurvey(@Payload() id: ObjectId): Promise<any> {
         return await this.sectionService.getAllSectionsBySurvey(id);
     }
+
+    @MessagePattern({ cmd: "update_section" })
+    async updateSection(@Payload() {id, data}): Promise<any> {
+        try {
+            return await this.sectionService.updateSection(id, data);
+        } catch (err) {
+            return err;
+        }
+    }
+
+    @MessagePattern({ cmd: "delete_section" })
+    async deleteSection(@Payload() id): Promise<any> {
+        try {
+            return await this.sectionService.deleteSection(id);
+        } catch (err) {
+            return err;
+        }
+    }
 }
