@@ -8,6 +8,7 @@ import { SurveyService } from './Survey/survey.service';
 import { QuestionService } from './Question/question.service';
 import { QuestionTypeModule } from './QuestionType/questionType.module';
 import { SectionModule } from './Sections/section.module';
+import { SurveyResponseModule } from './SurveyResponse/sueveyResponse.module';
 
 @Module({
   imports: [
@@ -16,7 +17,8 @@ import { SectionModule } from './Sections/section.module';
     SurveyModule,
     QuestionModule,
     QuestionTypeModule,
-    SectionModule
+    SectionModule,
+    SurveyResponseModule
   ],
   controllers: [],
   providers: [],

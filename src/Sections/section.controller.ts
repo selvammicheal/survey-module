@@ -12,11 +12,7 @@ export class SectionController {
 
     @MessagePattern({ cmd: 'create_section' })
     async createSection(@Payload() data): Promise<any> {
-        try {
-            return await this.sectionService.createSection(data);
-        } catch (err) {
-            return err;
-        }
+        return await this.sectionService.createSection(data);
     }
 
     @MessagePattern({ cmd: 'get_all_sections' })
@@ -26,19 +22,11 @@ export class SectionController {
 
     @MessagePattern({ cmd: "update_section" })
     async updateSection(@Payload() {id, data}): Promise<any> {
-        try {
-            return await this.sectionService.updateSection(id, data);
-        } catch (err) {
-            return err;
-        }
+        return await this.sectionService.updateSection(id, data);
     }
 
     @MessagePattern({ cmd: "delete_section" })
     async deleteSection(@Payload() id): Promise<any> {
-        try {
-            return await this.sectionService.deleteSection(id);
-        } catch (err) {
-            return err;
-        }
+        return await this.sectionService.deleteSection(id);
     }
 }

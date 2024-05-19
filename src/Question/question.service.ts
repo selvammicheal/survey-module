@@ -4,7 +4,7 @@ import { Model } from 'mongoose';
 import { Question } from './schemas/question.schema';
 import { ObjectId } from 'mongodb';
 import { QuestionTypeService } from 'src/QuestionType/questionType.service';
-import { QUESTION_DATA } from './questionEnum';
+import { QUESTION_DATA } from './enum/questionEnum';
 
 @Injectable()
 export class QuestionService {
@@ -13,6 +13,7 @@ export class QuestionService {
     ) { }
 
     async createQuestion(question) {
+        console.log(question)
         question["question_data"] = QUESTION_DATA[question.question_type_id].questionData
         const questionData = new this.questionModel(question);
         return questionData.save();
@@ -30,11 +31,13 @@ export class QuestionService {
         if(!ObjectId.isValid(id)){
             throw new Error("Object Id is invalid")
         }
+        if(data?.question == null){
+            data.question = "Untitled Question"
+        }
         return this.questionModel.findByIdAndUpdate(id, data, { new: true })
     }
 
     async updateQuestionType(id: ObjectId, questionTypeId: string) {
-        console.log(questionTypeId,"DDDD")
         if(!ObjectId.isValid(id)){
             throw new Error("Object Id is invalid")
         }

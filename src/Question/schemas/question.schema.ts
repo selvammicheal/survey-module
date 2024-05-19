@@ -4,7 +4,7 @@ import mongoose from "mongoose";
 @Schema({timestamps: true})
 
 export class Question {
-   @Prop()
+   @Prop({default: "Untitled Question"})
    question: string;
 
    @Prop({ type: mongoose.Schema.ObjectId, ref: 'QuestionType', required: true })

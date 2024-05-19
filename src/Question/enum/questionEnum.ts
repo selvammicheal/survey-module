@@ -1,23 +1,16 @@
+import { QUESTION_TYPE } from "./questionType.enum";
+
 export const QUESTION_DATA = {
-    "title" : {
-        questionData: ""
-    },
-    "image" : {
-        questionData: ""
-    },
-    "video" : {
-        questionData: ""
-    },
     //short
-    "663f0b3baa8c637f5b0d37d0": {
+    [QUESTION_TYPE.SHORT_ANSWER]: {
         questionData: null
     },
     //paragraph
-    "663f0b4eaa8c637f5b0d37d2": {
+    [QUESTION_TYPE.PARAGRAPH]: {
         questionData: null
     },
     // multiple-choice
-    "663f0b5caa8c637f5b0d37d4": {
+    [QUESTION_TYPE.MULTIPLE_CHOICE]: {
         questionData: [
             {
                 name: "Option 1",
@@ -26,7 +19,7 @@ export const QUESTION_DATA = {
         ],
     },
     // Checkbox
-    "663f0b6daa8c637f5b0d37d6": {
+    [QUESTION_TYPE.CHECKBOX]: {
         questionData: [
             {
                 name: "Option 1",
@@ -35,7 +28,7 @@ export const QUESTION_DATA = {
         ]
     },
     // Dropdown
-    "663f0b77aa8c637f5b0d37d8": {
+    [QUESTION_TYPE.DROPDOWN]: {
         questionData: [
             {
                 name: "Option 1",
@@ -44,7 +37,7 @@ export const QUESTION_DATA = {
         ]
     },
     // Linear scale
-    "663f0b89aa8c637f5b0d37da": {
+    [QUESTION_TYPE.LINEAR_SCALE]: {
         questionData: {
             startIndex: 1,
             endIndex: 5,
@@ -53,7 +46,7 @@ export const QUESTION_DATA = {
         },
     },
     // Multiple choice grid
-    "663f0b98aa8c637f5b0d37dc": {
+    [QUESTION_TYPE.MULTIPLE_CHOICE_GRID]: {
         questionData: {
             rowData: [
                 {
@@ -69,7 +62,7 @@ export const QUESTION_DATA = {
         }
     },
     // Checkbox grid
-    "663f0ba4aa8c637f5b0d37de": {
+    [QUESTION_TYPE.CHECKBOX_GRID]: {
         questionData: {
             rowData: [
                 {
@@ -85,11 +78,23 @@ export const QUESTION_DATA = {
         }
     },
     // Date
-    "663f0bb1aa8c637f5b0d37e0": {
+    [QUESTION_TYPE.DATE]: {
         questionData: null
     },
     // Time
-    "663f0bb9aa8c637f5b0d37e2": {
+    [QUESTION_TYPE.TIME]: {
         questionData: null
-    }
+    },
+    // Title
+    [QUESTION_TYPE.TITLE] : {
+        questionData: ""
+    },
+    // Image
+    [QUESTION_TYPE.IMAGE] : {
+        questionData: ""
+    },
+    // Video
+    [QUESTION_TYPE.VIDEO] : {
+        questionData: ""
+    },
 }

@@ -7,6 +7,7 @@ import { SectionService } from 'src/Sections/section.service';
 import { QuestionService } from 'src/question/question.service';
 import { QuestionTypeService } from 'src/QuestionType/questionType.service';
 import { ObjectId } from 'mongodb';
+import { createSurveyDto } from './dto/create-survey.dto';
 
 @Injectable()
 export class SurveyService {
@@ -17,7 +18,7 @@ export class SurveyService {
         private readonly questionTypeService : QuestionTypeService,
     ) { }
 
-    async createSurvey(survey) {
+    async createSurvey(survey: createSurveyDto) {
         const surveyData = new this.surveyModel(survey);
         const surveyResponse = await surveyData.save();
 
@@ -33,7 +34,6 @@ export class SurveyService {
 
         //creating a section
         const question = {
-            question: null,
             question_type_id: questionType[0]._id,
             question_img_src: "",
             option: null,
@@ -111,6 +111,10 @@ export class SurveyService {
         const surveyData = await this.surveyModel.findById(id);
         if (!surveyData) {
             throw new NotFoundException('Survey not found!');
+        }
+
+        if(data?.name == null){
+            data.name = "Untitled form"
         }
 
         return this.surveyModel.findByIdAndUpdate(id, data, { new: true });

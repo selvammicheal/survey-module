@@ -37,6 +37,9 @@ export class SectionService {
             throw new Error("Object Id is invalid")
         }
         console.log(data)
+        if(data?.name == null){
+            data.name = "Untitled Section"
+        }
         return this.sectionModel.findByIdAndUpdate(id, data, { new: true })
     }
 

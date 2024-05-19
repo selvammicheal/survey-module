@@ -11,46 +11,26 @@ export class QuestionController {
 
     @MessagePattern({ cmd: 'create_question' })
     async createQuestion(@Payload() data): Promise<any> {
-        try {
-            return await this.questionService.createQuestion(data);
-        } catch (err) {
-            return err;
-        }
+        return await this.questionService.createQuestion(data);
     }
 
     @MessagePattern({ cmd: "get_questions_by_survey" })
     async getQuestionsBySurvey(@Payload() id: ObjectId): Promise<any> {
-        try {
-            return await this.questionService.getQuestionsBySurvey(id);
-        } catch (err) {
-            return err;
-        }
+        return await this.questionService.getQuestionsBySurvey(id);
     }
 
     @MessagePattern({ cmd: "update_question" })
     async updateQuestion(@Payload() {id, data}): Promise<any> {
-        try {
-            return await this.questionService.updateQuestion(id, data);
-        } catch (err) {
-            return err;
-        }
+        return await this.questionService.updateQuestion(id, data);
     }
 
     @MessagePattern({ cmd: "update_question_type" })
     async updateQuestionType(@Payload() {id, value}): Promise<any> {
-        try {
-            return await this.questionService.updateQuestionType(id, value);
-        } catch (err) {
-            return err;
-        }
+        return await this.questionService.updateQuestionType(id, value);
     }
 
     @MessagePattern({ cmd: "delete_question" })
     async deleteQuestion(@Payload() id): Promise<any> {
-        try {
-            return await this.questionService.deleteQuestion(id);
-        } catch (err) {
-            return err;
-        }
+        return await this.questionService.deleteQuestion(id);
     }
 }
