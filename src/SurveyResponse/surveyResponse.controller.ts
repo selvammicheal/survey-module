@@ -11,7 +11,6 @@ export class SurveyResponseController {
 
     @MessagePattern({ cmd: 'submit_response_by_survey' })
     async submitResponseBySurvey(@Payload() data): Promise<any> {
-        console.log("Inside")
         return await this.surveyResponseService.submitResponseBySurvey(data);
     }
 
