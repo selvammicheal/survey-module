@@ -31,7 +31,8 @@ export class QuestionService {
         if(!ObjectId.isValid(id)){
             throw new Error("Object Id is invalid")
         }
-        if(data?.question == null){
+        console.log(data?.question)
+        if(data?.question === null){
             data.question = "Untitled Question"
         }
         return this.questionModel.findByIdAndUpdate(id, data, { new: true })
