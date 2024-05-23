@@ -15,7 +15,7 @@ export class SurveyService {
         @InjectModel(Survey.name) private readonly surveyModel: Model<Survey>,
         private readonly sectionService: SectionService,
         private readonly questionService: QuestionService,
-        private readonly questionTypeService : QuestionTypeService,
+        private readonly questionTypeService: QuestionTypeService,
     ) { }
 
     async createSurvey(survey: createSurveyDto) {
@@ -26,7 +26,8 @@ export class SurveyService {
         const section = {
             survey_id: surveyResponse._id,
             name: null,
-            description: null
+            description: null,
+            isActive: true
         }
         const sectionResponse = await this.sectionService.createSection(section);
 
@@ -39,7 +40,8 @@ export class SurveyService {
             option: null,
             section_id: sectionResponse._id,
             survey_id: surveyResponse._id,
-            mandatory: false
+            mandatory: false,
+            isActive: true
         }
         await this.questionService.createQuestion(question);
 
@@ -51,7 +53,7 @@ export class SurveyService {
     }
 
     async getSurvey(id: ObjectId) {
-        if(!ObjectId.isValid(id)){
+        if (!ObjectId.isValid(id)) {
             throw new Error("Object Id is invalid")
         }
 
@@ -76,6 +78,9 @@ export class SurveyService {
                 $unwind: "$sectionsData"
             },
             {
+                $match: { "sectionsData.isActive": true }
+            },
+            {
                 $lookup: {
                     from: "questions",
                     localField: "sectionsData._id",
@@ -85,17 +90,24 @@ export class SurveyService {
             },
             {
                 $group: {
-                  _id: "$_id",
-                  name: { $first: "$name" },
-                  description: { $first: "$description" },
-                  sections: {
-                    $push: {
-                      _id: "$sectionsData._id",
-                      name: "$sectionsData.name",
-                      description: "$sectionsData.description",
-                      questions: "$questions"
+                    _id: "$_id",
+                    name: { $first: "$name" },
+                    description: { $first: "$description" },
+                    sections: {
+                        $push: {
+                            _id: "$sectionsData._id",
+                            name: "$sectionsData.name",
+                            description: "$sectionsData.description",
+                            isActive: "$sectionsData.isActive",
+                            questions: {
+                                $filter: {
+                                    input: "$questions",
+                                    as: "question",
+                                    cond: { $eq: ["$$question.isActive", true] }
+                                }
+                            }
+                        }
                     }
-                  }
                 }
             }
         ];
@@ -107,13 +119,13 @@ export class SurveyService {
         if (!ObjectId.isValid(id)) {
             throw new Error("Object Id is invalid")
         }
-        
+
         const surveyData = await this.surveyModel.findById(id);
         if (!surveyData) {
             throw new NotFoundException('Survey not found!');
         }
 
-        if(data?.name == null){
+        if (data?.name == null) {
             data.name = "Untitled form"
         }
 

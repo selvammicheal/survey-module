@@ -44,8 +44,8 @@ export class SectionService {
     }
 
     async deleteSection(id: string): Promise<{ message: string }> {
-        await this.questionModel.deleteMany({section_id: id});
-        const result = await this.sectionModel.findByIdAndDelete(id);
+        await this.questionModel.updateMany({section_id: id}, {isActive: false});
+        const result = await this.sectionModel.findByIdAndUpdate(id, {isActive: false});
         if (!result) {
           throw new NotFoundException(`Section with ID ${id} not found`);
         }

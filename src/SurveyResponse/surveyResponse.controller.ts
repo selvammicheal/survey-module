@@ -1,5 +1,5 @@
 import { Controller } from '@nestjs/common';
-import { SurveyResponseService } from './sueveyResponse.service';
+import { SurveyResponseService } from './surveyResponse.service';
 import { MessagePattern, Payload } from '@nestjs/microservices';
 
 
@@ -12,16 +12,6 @@ export class SurveyResponseController {
     @MessagePattern({ cmd: 'submit_response_by_survey' })
     async submitResponseBySurvey(@Payload() data): Promise<any> {
         return await this.surveyResponseService.submitResponseBySurvey(data);
-    }
-
-    @MessagePattern({ cmd: "get_all_question_type" })
-    async getAllQuestionType(): Promise<any> {
-        return await this.surveyResponseService.getAllQuestionType();
-    }
-
-    @MessagePattern({ cmd: "get_question_type" })
-    async getQuestionType(@Payload() id): Promise<any> {
-        return await this.surveyResponseService.getQuestionType(id);
     }
 
 }

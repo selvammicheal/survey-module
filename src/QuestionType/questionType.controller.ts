@@ -16,6 +16,7 @@ export class QuestionTypeController {
 
     @MessagePattern({ cmd: "get_all_question_type" })
     async getAllQuestionType(): Promise<any> {
+        console.log("INSIDE")
         return await this.questionTypeService.getAllQuestionType();
     }
 

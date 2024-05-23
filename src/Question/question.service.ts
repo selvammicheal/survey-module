@@ -14,42 +14,44 @@ export class QuestionService {
 
     async createQuestion(question) {
         console.log(question)
-        question["question_data"] = QUESTION_DATA[question.question_type_id].questionData
+        question["question_data"] = QUESTION_DATA[question.question_type_id].questionData;
+        question["isActive"] = true;
         const questionData = new this.questionModel(question);
         return questionData.save();
     }
 
     async getQuestionsBySurvey(id: ObjectId) {
-        if(!ObjectId.isValid(id)){
+        if (!ObjectId.isValid(id)) {
             throw new Error("Object Id is invalid")
         }
-        return await this.questionModel.find({ survey_id: id })
+        return await this.questionModel.find({ survey_id: id, isActive: true })
 
     }
 
     async updateQuestion(id: ObjectId, data) {
-        if(!ObjectId.isValid(id)){
+        if (!ObjectId.isValid(id)) {
             throw new Error("Object Id is invalid")
         }
         console.log(data?.question)
-        if(data?.question === null){
+        if (data?.question === null) {
             data.question = "Untitled Question"
         }
         return this.questionModel.findByIdAndUpdate(id, data, { new: true })
     }
 
     async updateQuestionType(id: ObjectId, questionTypeId: string) {
-        if(!ObjectId.isValid(id)){
+        if (!ObjectId.isValid(id)) {
             throw new Error("Object Id is invalid")
         }
-        return this.questionModel.findByIdAndUpdate(id, {question_type_id: questionTypeId, question_data: QUESTION_DATA[questionTypeId].questionData}, { new: true })
+        return this.questionModel.findByIdAndUpdate(id, { question_type_id: questionTypeId, question_data: QUESTION_DATA[questionTypeId].questionData }, { new: true })
     }
 
     async deleteQuestion(id: string): Promise<{ message: string }> {
-        const result = await this.questionModel.findByIdAndDelete(id);
+        // const result = await this.questionModel.findByIdAndDelete(id);
+        const result = await this.questionModel.findByIdAndUpdate(id, { isActive: false }, { new: true })
         if (!result) {
-          throw new NotFoundException(`Question with ID ${id} not found`);
+            throw new NotFoundException(`Question with ID ${id} not found`);
         }
         return { message: 'Question deleted successfully' };
-      }
+    }
 }

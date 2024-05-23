@@ -24,6 +24,9 @@ export class Question {
 
    @Prop()
    mandatory: boolean; 
+
+   @Prop({default: true})
+   isActive: boolean;
    
 }
 

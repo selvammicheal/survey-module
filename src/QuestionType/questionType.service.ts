@@ -16,7 +16,9 @@ import { ObjectId } from "mongodb";
     }
 
     async getAllQuestionType() {
-        return await this.questionTypeModel.find();
+        const data = await this.questionTypeModel.find();
+        console.log(data)
+        return data
     }
 
     async getQuestionType(id: ObjectId) {

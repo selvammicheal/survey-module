@@ -12,6 +12,9 @@ export class Section {
 
    @Prop()
    description: string;
+
+   @Prop({default: true})
+   isActive: boolean;
    
 }  
 
