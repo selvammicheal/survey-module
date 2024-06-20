@@ -125,7 +125,7 @@ export class SurveyService {
             throw new NotFoundException('Survey not found!');
         }
 
-        if (data?.name == null) {
+        if (data?.name === null) {
             data.name = "Untitled form"
         }
 
