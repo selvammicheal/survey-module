@@ -20,8 +20,8 @@ export class SurveyResponse {
    @Prop()
    question: string
 
-   @Prop({ type: mongoose.Schema.Types.Mixed, required: true })
-   question_response: string | string[]
+   @Prop({ type: mongoose.Schema.Types.Mixed })
+   question_response: string | string[] | null
    
 }
 

@@ -33,4 +33,9 @@ export class SurveyController {
     async updateSurvey(@Payload() { id, data }): Promise<Survey> {
         return await this.surveyService.updateSurvey(id, data);
     }
+
+    @MessagePattern({ cmd: 'get_survey-name' })
+    async getSurveyName(@Payload() id: ObjectId): Promise<any> {
+        return await this.surveyService.getSurveyName(id);
+    }
 }

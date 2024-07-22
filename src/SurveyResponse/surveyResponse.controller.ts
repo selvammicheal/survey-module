@@ -14,4 +14,14 @@ export class SurveyResponseController {
         return await this.surveyResponseService.submitResponseBySurvey(data);
     }
 
+    @MessagePattern({ cmd: 'get_survey_responses_by_survey' })
+    async getSurveyResponsesBySurvey(@Payload() id): Promise<any> {
+        return await this.surveyResponseService.getSurveyResponsesBySurvey(id);
+    }
+
+    @MessagePattern({ cmd: 'get_survey_response' })
+    async getSurveyResponse(@Payload() id): Promise<any> {
+        return await this.surveyResponseService.getSurveyResponse(id);
+    }
+
 }

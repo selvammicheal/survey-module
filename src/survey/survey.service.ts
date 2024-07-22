@@ -49,7 +49,19 @@ export class SurveyService {
     }
 
     async getAllSurvey() {
-        return this.surveyModel.find();
+        return await this.surveyModel.find();
+    }
+
+    async getSurveyName(id: ObjectId) {
+        const survey = await this.surveyModel.findById(id);
+        console.log(survey)
+        if (survey) {
+            console.log('Survey Name:', survey.name);
+            return {survey_name: survey.name};
+        } else {
+            console.log('Survey not found');
+            return null;
+        }
     }
 
     async getSurvey(id: ObjectId) {

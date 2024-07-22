@@ -8,6 +8,9 @@ export class Survey {
 
    @Prop()
    description: string;
+
+   @Prop({default: true})
+   isActive: boolean;
 }
 
 export const SurveySchema = SchemaFactory.createForClass(Survey);  
