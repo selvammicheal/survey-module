@@ -14,7 +14,7 @@ export class SurveyResponseService {
         return await this.surveyResponseModel.insertMany(responses);
     }
 
-    async getSurveyResponse(id: ObjectId) {
+    async getSurveyResponse(id: ObjectId, email: string) {
         if (!ObjectId.isValid(id)) {
             return {
                 error: true,
@@ -23,15 +23,11 @@ export class SurveyResponseService {
         }
 
         const responseData = await this.surveyResponseModel.find({
-            survey_id: id
+            survey_id: id,
+            user_email: email
         });
 
-        // if (responseData.length <= 0) {
-        //     return responseData;
-        // }
-
-        console.log(responseData,"responseData")
-
+        return responseData;
     }
 
     async getSurveyResponsesBySurvey(id: ObjectId) {
