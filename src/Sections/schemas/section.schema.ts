@@ -1,4 +1,5 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose"
+import { ObjectId } from "mongodb";
 import mongoose from "mongoose";
 
 @Schema({timestamps: true})
@@ -15,6 +16,9 @@ export class Section {
 
    @Prop({default: true})
    isActive: boolean;
+
+   @Prop()
+   linkedAnswerId: ObjectId;
    
 }  
 

@@ -1,3 +1,4 @@
+import { ObjectId } from "mongodb";
 import { QUESTION_TYPE } from "./questionType.enum";
 
 export const QUESTION_DATA = {
@@ -13,8 +14,10 @@ export const QUESTION_DATA = {
     [QUESTION_TYPE.MULTIPLE_CHOICE]: {
         questionData: [
             {
+                _id: new ObjectId(),
                 name: "Option 1",
-                imgSrc: ""
+                imgSrc: "",
+                points: 0
             }
         ],
     },
@@ -23,7 +26,8 @@ export const QUESTION_DATA = {
         questionData: [
             {
                 name: "Option 1",
-                imgSrc: ""
+                imgSrc: "",
+                points: 0
             }
         ]
     },
@@ -32,7 +36,8 @@ export const QUESTION_DATA = {
         questionData: [
             {
                 name: "Option 1",
-                imgSrc: ""
+                imgSrc: "",
+                points: 0
             }
         ]
     },
@@ -50,12 +55,14 @@ export const QUESTION_DATA = {
         questionData: {
             rowData: [
                 {
-                    name: "Row 1"
+                    name: "Row 1",
+                    points: 0
                 },
             ],
             colData: [
                 {
-                    name: "Col 1"
+                    name: "Col 1",
+                    points: 0
                 },
                 
             ],
@@ -66,12 +73,14 @@ export const QUESTION_DATA = {
         questionData: {
             rowData: [
                 {
-                    name: "Row 1"
+                    name: "Row 1",
+                    points: 0
                 },
             ],
             colData: [
                 {
-                    name: "Col 1"
+                    name: "Col 1",
+                    points: 0
                 },
                 
             ],

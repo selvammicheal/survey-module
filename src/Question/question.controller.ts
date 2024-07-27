@@ -25,8 +25,8 @@ export class QuestionController {
     }
 
     @MessagePattern({ cmd: "update_question_type" })
-    async updateQuestionType(@Payload() {id, value}): Promise<any> {
-        return await this.questionService.updateQuestionType(id, value);
+    async updateQuestionType(@Payload() {id, data}): Promise<any> {
+        return await this.questionService.updateQuestionType(id, data);
     }
 
     @MessagePattern({ cmd: "delete_question" })

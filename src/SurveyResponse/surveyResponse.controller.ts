@@ -24,4 +24,9 @@ export class SurveyResponseController {
         return await this.surveyResponseService.getSurveyResponse(surveyId, email);
     }
 
+    @MessagePattern({ cmd: 'check_if_survey_exists' })
+    async checkIfSurveyExists(@Payload() { surveyId, email }): Promise<any> {
+        return await this.surveyResponseService.checkIfSurveyExists(surveyId, email);
+    }
+
 }

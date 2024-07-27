@@ -22,6 +22,9 @@ export class SurveyResponse {
 
    @Prop({ type: mongoose.Schema.Types.Mixed })
    question_response: string | string[] | null
+
+   @Prop()
+   points: number;
    
 }
 

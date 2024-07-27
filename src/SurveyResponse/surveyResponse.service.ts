@@ -30,6 +30,27 @@ export class SurveyResponseService {
         return responseData;
     }
 
+    async checkIfSurveyExists(id: ObjectId, email: string) {
+        if (!ObjectId.isValid(id)) {
+            return {
+                error: true,
+                reason: "Object Id is invalid"
+            }
+        }
+
+        const responseData = await this.surveyResponseModel.findOne({
+            survey_id: id,
+            user_email: email
+        });
+
+        console.log(responseData,"responseData")
+        if(responseData) {
+            return { exists: true}
+        } else {
+            return { exists: false}
+        }
+    }
+
     async getSurveyResponsesBySurvey(id: ObjectId) {
         if (!ObjectId.isValid(id)) {
             return {

@@ -1,10 +1,10 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose"
 import mongoose from "mongoose";
 
-@Schema({timestamps: true})
+@Schema({ timestamps: true })
 
 export class Question {
-   @Prop({default: "Untitled Question"})
+   @Prop({ default: "Untitled Question" })
    question: string;
 
    @Prop({ type: mongoose.Schema.ObjectId, ref: 'QuestionType', required: true })
@@ -23,11 +23,17 @@ export class Question {
    survey_id: mongoose.Schema.Types.ObjectId;
 
    @Prop()
-   mandatory: boolean; 
+   mandatory: boolean;
 
-   @Prop({default: true})
+   @Prop({ default: true })
    isActive: boolean;
-   
+
+   @Prop({ default: 0 })
+   points: number;
+
+   @Prop({ default: false })
+   isLinked: boolean;
+
 }
 
 export const QuestionSchema = SchemaFactory.createForClass(Question);  

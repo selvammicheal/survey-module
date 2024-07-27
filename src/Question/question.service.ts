@@ -39,11 +39,11 @@ export class QuestionService {
         return this.questionModel.findByIdAndUpdate(id, data, { new: true })
     }
 
-    async updateQuestionType(id: ObjectId, questionTypeId: string) {
+    async updateQuestionType(id: ObjectId, data) {
         if (!ObjectId.isValid(id)) {
             throw new Error("Object Id is invalid")
         }
-        return this.questionModel.findByIdAndUpdate(id, { question_type_id: questionTypeId, question_data: QUESTION_DATA[questionTypeId].questionData }, { new: true })
+        return this.questionModel.findByIdAndUpdate(id, data, { new: true })
     }
 
     async deleteQuestion(id: string): Promise<{ message: string }> {
