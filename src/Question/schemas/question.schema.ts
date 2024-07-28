@@ -31,9 +31,6 @@ export class Question {
    @Prop({ default: 0 })
    points: number;
 
-   @Prop({ default: false })
-   isLinked: boolean;
-
 }
 
 export const QuestionSchema = SchemaFactory.createForClass(Question);  

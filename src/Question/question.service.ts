@@ -13,7 +13,6 @@ export class QuestionService {
     ) { }
 
     async createQuestion(question) {
-        console.log(question)
         question["question_data"] = QUESTION_DATA[question.question_type_id].questionData;
         question["isActive"] = true;
         const questionData = new this.questionModel(question);
@@ -32,7 +31,6 @@ export class QuestionService {
         if (!ObjectId.isValid(id)) {
             throw new Error("Object Id is invalid")
         }
-        console.log(data?.question)
         if (data?.question === null) {
             data.question = "Untitled Question"
         }

@@ -27,9 +27,12 @@ export class SurveyService {
             survey_id: surveyResponse._id,
             name: null,
             description: null,
-            isActive: true
+            isActive: true,
+            isLinked: false
         }
         const sectionResponse = await this.sectionService.createSection(section);
+
+        console.log(sectionResponse,"sectionResponse")
 
         const questionType = await this.questionTypeService.getAllQuestionType();
 
@@ -48,18 +51,17 @@ export class SurveyService {
         return surveyResponse;
     }
 
-    async getAllSurvey() {
-        return await this.surveyModel.find();
+    async getAllSurvey(type: string) {
+        return await this.surveyModel.find({
+            surveyType: type
+        });
     }
 
     async getSurveyName(id: ObjectId) {
         const survey = await this.surveyModel.findById(id);
-        console.log(survey)
         if (survey) {
-            console.log('Survey Name:', survey.name);
             return {survey_name: survey.name};
         } else {
-            console.log('Survey not found');
             return null;
         }
     }
@@ -105,12 +107,14 @@ export class SurveyService {
                     _id: "$_id",
                     name: { $first: "$name" },
                     description: { $first: "$description" },
+                    surveyType: { $first: "$surveyType" },
                     sections: {
                         $push: {
                             _id: "$sectionsData._id",
                             name: "$sectionsData.name",
                             description: "$sectionsData.description",
                             isActive: "$sectionsData.isActive",
+                            isLinked: "$sectionsData.isLinked",
                             questions: {
                                 $filter: {
                                     input: "$questions",

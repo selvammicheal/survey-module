@@ -43,7 +43,6 @@ export class SurveyResponseService {
             user_email: email
         });
 
-        console.log(responseData,"responseData")
         if(responseData) {
             return { exists: true}
         } else {

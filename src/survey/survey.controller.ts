@@ -20,8 +20,8 @@ export class SurveyController {
     }
 
     @MessagePattern({ cmd: 'get_all_survey' })
-    async getAllSurvey(): Promise<any> {
-        return await this.surveyService.getAllSurvey();
+    async getAllSurvey(@Payload() type: string): Promise<any> {
+        return await this.surveyService.getAllSurvey(type);
     }
 
     @MessagePattern({ cmd: 'get_survey' })

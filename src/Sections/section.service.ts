@@ -36,7 +36,6 @@ export class SectionService {
         if(!ObjectId.isValid(id)){
             throw new Error("Object Id is invalid")
         }
-        console.log(data)
         if(data?.name === null){
             data.name = "Untitled Section"
         }

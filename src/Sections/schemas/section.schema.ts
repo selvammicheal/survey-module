@@ -17,8 +17,8 @@ export class Section {
    @Prop({default: true})
    isActive: boolean;
 
-   @Prop()
-   linkedAnswerId: ObjectId;
+   @Prop({default: false})
+   isLinked: boolean;
    
 }  
 
