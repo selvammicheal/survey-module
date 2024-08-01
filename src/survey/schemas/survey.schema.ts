@@ -15,6 +15,9 @@ export class Survey {
    @Prop({default: "survey"})
    surveyType: string;
 
+   @Prop({required: true})
+   surveyMode: string;
+
 }
 
 export const SurveySchema = SchemaFactory.createForClass(Survey);  
