@@ -108,6 +108,7 @@ export class SurveyService {
                     name: { $first: "$name" },
                     description: { $first: "$description" },
                     surveyType: { $first: "$surveyType" },
+                    surveyMode: { $first: "$surveyMode" },
                     sections: {
                         $push: {
                             _id: "$sectionsData._id",
